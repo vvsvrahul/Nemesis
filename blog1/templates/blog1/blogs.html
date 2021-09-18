@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+      <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Piedra&display=swap" rel="stylesheet">
+    <title>Blogs</title>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id='mav'>
+
+        <button class="navbar-toggler " id = 'hello11'  type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'blog1:after' %}">About<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/Rahulvvsv">Github</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">LinkedIn</a>
+            </li>
+
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated   %}
+            <li class="nav-item active">
+            <a class="nav-link" href="{% url "blog1:logout" %}">Logout<span class="sr-only">(current)</span></a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+
+
+      </nav>
+      <div class="container">
+        <div class="jumbotron" id='welcome'>
+          <h1>Welcome {{user.username}}</h1>
+         <h1>Your email is {{user.email}}</h1>
+         <h1>Your address is {{user.stories.address}}</h1>
+        <a href="{% url 'blog1:update' user.stories.id %}">update account details</a>
+           <hr> <a href="{% url 'blog1:delete' user.id %}" >Delete user</a>
+        </div>
+        <hr>
+   
+
+      </div>
